@@ -22,6 +22,8 @@ signals:
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
 private:
+    void startDownload();
+
     QStringList zipDownloadUrlList;
     QList<QFileInfo> fileInfoList;
     QList<std::function<void (qint64 bytesReceived, qint64 bytesTotal)>> downloadProgressFunctionList;

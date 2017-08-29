@@ -28,6 +28,7 @@ public:
     QJsonObject aglaia123Analysis(QString url);
     QJsonObject aglaia123Analysis2(QString url);
     void aglaia123Analysis2(QString url, std::function<void (QJsonObject)> f);
+    void aglaia123Analysis3(QString url, std::function<void (QString /*title*/, QStringList /*downloadUrls*/)> f);
 
 signals:
     void updateInformation(int);

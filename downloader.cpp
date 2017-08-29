@@ -13,6 +13,22 @@ void Downloader::addDownloadList(QString zipDownloadUrl, QFileInfo fileInfo, std
     fileInfoList << fileInfo;
     downloadProgressFunctionList << downloadProgressFunction;
 
+    startDownload();
+}
+
+void Downloader::remove(QString zipDownloadUrl)
+{
+    int index = zipDownloadUrlList.indexOf(zipDownloadUrl);
+    if(index == -1){
+        qDebug("Downloader::remove can't remove");
+        return;
+    }
+    zipDownloadUrlList.removeAt(index);
+    fileInfoList.removeAt(index);
+}
+
+void Downloader::startDownload()
+{
     if(!isDownloading){
         isDownloading = true;
         while(zipDownloadUrlList.size() > 0){
@@ -25,15 +41,4 @@ void Downloader::addDownloadList(QString zipDownloadUrl, QFileInfo fileInfo, std
         }
         isDownloading = false;
     }
-}
-
-void Downloader::remove(QString zipDownloadUrl)
-{
-    int index = zipDownloadUrlList.indexOf(zipDownloadUrl);
-    if(index == -1){
-        qDebug("Downloader::remove can't remove");
-        return;
-    }
-    zipDownloadUrlList.removeAt(index);
-    fileInfoList.removeAt(index);
 }

@@ -6,6 +6,7 @@
 #include <QImage>
 #include <QFile>
 #include <QJsonArray>
+#include <QTime>
 
 #include "zippysharewebcontrol.h"
 #include "webautomaticindexer.h"
@@ -292,6 +293,7 @@ QJsonObject EynyWebControl::aglaia123Analysis2(QString url){
     return totalInfo;
 }
 
+// catch all zippyshare url
 void EynyWebControl::aglaia123Analysis2(QString url, std::function<void (QJsonObject)> f)
 {
     web->get2(url, QStringList(), [=](QByteArray html){
@@ -318,6 +320,32 @@ void EynyWebControl::aglaia123Analysis2(QString url, std::function<void (QJsonOb
         totalInfo["downloadUrl"] = downloadUrlArray;
 
         f(totalInfo);
+    });
+}
+
+void EynyWebControl::aglaia123Analysis3(QString url, std::function<void (QString /*title*/, QStringList /*downloadUrls*/)> f)
+{
+    web->get2(url, QStringList(), [=](QByteArray html){
+        //QTime t = QTime::currentTime();
+        QString u_html = codec->toUnicode(html);
+
+        QString imgUrl = urlFix(capturedString(u_html, "zoomfile=\"(.+?)\""));
+        QString title = capturedString(u_html, QStringLiteral("【檔案名稱】：(.+?)<br />"));
+        title.replace(QRegularExpression("<.+?>", QRegularExpression::DotMatchesEverythingOption), "");
+        title = urlFix(title);
+
+        QStringList downloadUrls;
+
+        QRegularExpression re("(http://www\\d*?.zippyshare.com.+?html)");
+        QRegularExpressionMatchIterator it = re.globalMatch(u_html);
+        while(it.hasNext()){
+            QRegularExpressionMatch match = it.next();
+            QString downloadUrl = match.captured(1);
+            downloadUrls << downloadUrl;
+        }
+
+        //qDebug() << "a" << t.secsTo(QTime::currentTime());
+        f(title, downloadUrls);
     });
 }
 

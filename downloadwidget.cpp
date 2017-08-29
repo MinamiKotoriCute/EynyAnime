@@ -11,6 +11,7 @@
 #include <QProcess>
 #include <QDir>
 #include <QDebug>
+#include <QTime>
 
 #include "eynywebcontrol.h"
 #include "myqsettings.h"
@@ -200,20 +201,18 @@ void DownloadWidget::addAnime(QString eynyUrl)
 {
     EynyWebControl *eynyLogin = new EynyWebControl;
     eynyLogin->login(username, password, [=]{
-        eynyLogin->aglaia123Analysis2(eynyUrl, [=](QJsonObject infoObject){
-            QJsonArray array = infoObject["downloadUrl"].toArray();
-            for(const QJsonValue &value : array){
-                const QString zipUrl = value.toString();
+        eynyLogin->aglaia123Analysis3(eynyUrl, [=](QString eynyTitle, QStringList downloadUrls){
+            for(QString downloadUrl : downloadUrls){
                 ZippyshareWebControl::getTitle2([=](QString title){
                     AnimeInfo animeInfo;
                     animeInfo.analysis(title);
-                    animeInfo.eynyAnimeName = infoObject["title"].toString();
-                    animeInfo.zipUrl = zipUrl;
+                    animeInfo.eynyAnimeName = eynyTitle;
+                    animeInfo.zipUrl = downloadUrl;
                     animeInfo.eynyUrl = eynyUrl;
                     addAnime(animeInfo);
                     //qDebug() << "AnimeTreeWidget::addAnime" << animeInfo;
                     //zip->deleteLater();
-                }, zipUrl);
+                }, downloadUrl);
             }
 
             eynyLogin->deleteLater();
@@ -278,7 +277,7 @@ void DownloadWidget::addAnime(AnimeInfo animeInfo)
     if(num != 0)
         subtitleGroupItem->setText(1, QString::number(num));
 
-    writeSettings();
+    //writeSettings();
 }
 
 void DownloadWidget::closeEvent(QCloseEvent *)
@@ -312,10 +311,12 @@ void DownloadWidget::readSettings()
 void DownloadWidget::writeSettings()
 {
     MyQSettings settings;
-    settings.clear();
+
     settings.beginGroup("DownloadWidget");
-    //settings.setValue("username", username);
-    //settings.setValue("password", password);
+    if(username.isEmpty())
+        settings.setValue("username", username);
+    if(password.isEmpty())
+        settings.setValue("password", password);
     settings.beginWriteArray("urls");
     for(int i=0;i<treeWidget->topLevelItemCount();i++){
         settings.setArrayIndex(i);
