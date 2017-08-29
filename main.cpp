@@ -7,8 +7,6 @@
 
 #include "downloadwidget.h"
 
-#include "myitemdelegate.h"
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

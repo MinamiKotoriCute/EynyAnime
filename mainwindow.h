@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "eynywebcontrol.h"
+#include "animelistwidget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -14,13 +15,16 @@ public:
     ~MainWindow();
 
 protected:
-    void closeEvent(QCloseEvent *e);
+    void closeEvent(QCloseEvent *);
 
 private:
     void readSettings();
     void writeSettings();
 
+    void loadAnimeData();
+
     EynyWebControl *eyny;
+    AnimeListWidget *animeListWidget;
 };
 
 #endif // MAINWINDOW_H

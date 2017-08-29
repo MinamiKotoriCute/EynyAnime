@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     downloadwidget.cpp \
     animeinfo.cpp \
     animedetailwidget.cpp \
-    treewidget.cpp
+    treewidget.cpp \
+    myqsettings.cpp
 
 HEADERS  += mainwindow.h \
     eynywebcontrol.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     downloadwidget.h \
     animeinfo.h \
     animedetailwidget.h \
-    treewidget.h
+    treewidget.h \
+    myqsettings.h
 
 include("D:\Users\Qoo\Documents\QtModule\easywebcontrol\easywebcontrol.pri")
 
