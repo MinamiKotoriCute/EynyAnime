@@ -18,7 +18,6 @@ SOURCES += main.cpp\
     zippysharewebcontrol.cpp \
     animelistwidget.cpp \
     animetreewidget.cpp \
-    mainwebwidget.cpp \
     supercontrol.cpp \
     downloadwidget.cpp \
     animeinfo.cpp \
@@ -33,7 +32,6 @@ HEADERS  += mainwindow.h \
     zippysharewebcontrol.h \
     animelistwidget.h \
     animetreewidget.h \
-    mainwebwidget.h \
     supercontrol.h \
     downloadwidget.h \
     animeinfo.h \
