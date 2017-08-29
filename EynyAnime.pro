@@ -18,28 +18,20 @@ SOURCES += main.cpp\
     zippysharewebcontrol.cpp \
     animelistwidget.cpp \
     animetreewidget.cpp \
-    supercontrol.cpp \
     downloadwidget.cpp \
     animeinfo.cpp \
     animedetailwidget.cpp \
-    treewidget.cpp \
-    myitemdelegate.cpp \
-    mywidget.cpp \
-    animehomepage.cpp
+    treewidget.cpp
 
 HEADERS  += mainwindow.h \
     eynywebcontrol.h \
     zippysharewebcontrol.h \
     animelistwidget.h \
     animetreewidget.h \
-    supercontrol.h \
     downloadwidget.h \
     animeinfo.h \
     animedetailwidget.h \
-    treewidget.h \
-    myitemdelegate.h \
-    mywidget.h \
-    animehomepage.h
+    treewidget.h
 
 include("D:\Users\Qoo\Documents\QtModule\easywebcontrol\easywebcontrol.pri")
 
