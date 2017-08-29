@@ -6,6 +6,7 @@
 #include "zippysharewebcontrol.h"
 #include "animeinfo.h"
 #include "treewidget.h"
+#include "downloader.h"
 
 class DownloadWidget : public QWidget
 {

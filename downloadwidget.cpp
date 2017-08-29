@@ -13,6 +13,7 @@
 #include <QDebug>
 
 #include "eynywebcontrol.h"
+#include "myqsettings.h"
 
 DownloadWidget &DownloadWidget::Instance()
 {
@@ -287,8 +288,7 @@ void DownloadWidget::closeEvent(QCloseEvent *)
 
 void DownloadWidget::readSettings()
 {
-    //QSettings settings(QSettings::IniFormat, QSettings::UserScope, "ASD", "EynyAnime");
-    QSettings settings("Information.ini",QSettings::IniFormat);
+    MyQSettings settings;
 
     settings.beginGroup("DownloadWidget");
     username = settings.value("username").toString();
@@ -311,12 +311,11 @@ void DownloadWidget::readSettings()
 
 void DownloadWidget::writeSettings()
 {
-    //QSettings settings(QSettings::IniFormat, QSettings::UserScope, "ASD", "EynyAnime");
-    QSettings settings("Information.ini",QSettings::IniFormat);
+    MyQSettings settings;
     settings.clear();
     settings.beginGroup("DownloadWidget");
-    settings.setValue("username", username);
-    settings.setValue("password", password);
+    //settings.setValue("username", username);
+    //settings.setValue("password", password);
     settings.beginWriteArray("urls");
     for(int i=0;i<treeWidget->topLevelItemCount();i++){
         settings.setArrayIndex(i);
