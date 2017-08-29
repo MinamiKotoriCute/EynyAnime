@@ -43,7 +43,7 @@ HEADERS  += mainwindow.h \
     mywidget.h \
     animehomepage.h
 
-include("D:\All\Code\QT\module\easywebcontrol\easywebcontrol.pri")
+include("D:\Users\Qoo\Documents\QtModule\easywebcontrol\easywebcontrol.pri")
 
 #版本信息
 VERSION = 0.0.0.1
