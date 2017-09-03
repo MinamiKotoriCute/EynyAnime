@@ -135,35 +135,6 @@ void AnimeListWidget::setAnimeList(QList<QJsonObject> animeList)
     this->animeList = animeList;
     listWidget->clear();
     for(QJsonObject anime : animeList){
-        //QImage img;
-        //img.loadFromData(web->get(anime["imageUrl"].toString()));
-        //listWidget->addItem(new QListWidgetItem(QIcon(QPixmap::fromImage(img)), anime["title"].toString()));
         listWidget->addItem(new QListWidgetItem(anime["title"].toString()));
     }
-
-    /*int i = 0;
-    for(QJsonObject anime : animeList){
-        QListWidgetItem *item = listWidget->item(i);
-        eyny->getImage(anime["imageUrl"].toString(), [=](QImage image){
-            item->setIcon(QIcon(QPixmap::fromImage(image)));
-        });
-        i++;
-    }*/
-
-    /*QTimer::singleShot(1000, [=]{
-        Asynchronous asynchronous;
-
-        asynchronous.setFuntion([=, &asynchronous](){
-            int i = 0;
-            for(QJsonObject anime : animeList){
-
-                QListWidgetItem *item = listWidget->item(i);
-                item->setIcon(QIcon(QPixmap::fromImage(eyny->getImage(anime["imageUrl"].toString()))));
-                i++;
-            }
-            asynchronous.finish();
-        });
-
-        asynchronous.start();
-    });*/
 }

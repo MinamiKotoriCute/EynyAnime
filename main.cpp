@@ -6,6 +6,7 @@
 #include <QTimer>
 
 #include "downloadwidget.h"
+#include "homewidget.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +17,9 @@ int main(int argc, char *argv[])
 
     DownloadWidget &d = DownloadWidget::Instance();
     d.show();
+
+    //HomeWidget h;
+    //h.show();
 
     return a.exec();
 }
